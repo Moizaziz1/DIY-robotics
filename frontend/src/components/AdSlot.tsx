@@ -48,7 +48,7 @@ export default function AdSlot({ format = 'auto', className = '', label = 'Adver
     container.appendChild(ins);
 
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       // AdSense not loaded yet
     }

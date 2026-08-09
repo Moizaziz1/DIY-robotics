@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#b44aff"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="100%" stop-color="#00ff88"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#06060a"/>
+  <!-- Grid -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00f0ff" stroke-width="0.5" opacity="0.08"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Floating shapes -->
+  <rect x="100" y="80" width="60" height="60" rx="8" fill="none" stroke="#00f0ff" stroke-width="2" opacity="0.2" transform="rotate(15 130 110)"/>
+  <circle cx="1050" cy="120" r="40" fill="none" stroke="#b44aff" stroke-width="2" opacity="0.2"/>
+  <polygon points="1100,500 1130,440 1160,500" fill="none" stroke="#ff006e" stroke-width="2" opacity="0.2"/>
+  <rect x="80" y="450" width="50" height="50" fill="none" stroke="#00ff88" stroke-width="2" opacity="0.2" transform="rotate(45 105 475)"/>
+  <!-- Circuit lines -->
+  <line x1="0" y1="315" x2="350" y2="315" stroke="url(#g2)" stroke-width="1" opacity="0.1"/>
+  <line x1="850" y1="315" x2="1200" y2="315" stroke="url(#g2)" stroke-width="1" opacity="0.1"/>
+  <!-- Left accent -->
+  <rect x="60" y="200" width="6" height="230" rx="3" fill="url(#g1)" opacity="0.6"/>
+  <!-- Main text -->
+  <text x="600" y="240" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="900" fill="white" text-anchor="middle" letter-spacing="-1">DIY Smart Home</text>
+  <text x="600" y="320" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="900" fill="url(#g1)" text-anchor="middle" letter-spacing="-1">Robotics</text>
+  <!-- Subtitle -->
+  <text x="600" y="390" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#888" text-anchor="middle">Tutorials, Guides & Community for Arduino, Raspberry Pi, ESP32</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="580" width="1200" height="50" fill="#0a0a0f"/>
+  <text x="600" y="612" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#555" text-anchor="middle" letter-spacing="4">diy-smarthome.dev</text>
+  <!-- Logo mark -->
+  <circle cx="600" cy="140" r="35" fill="none" stroke="url(#g1)" stroke-width="3" opacity="0.5"/>
+  <circle cx="600" cy="140" r="15" fill="url(#g1)" opacity="0.3"/>
+</svg>

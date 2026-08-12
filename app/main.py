@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
 from app.core.database import engine, Base
-from app.routes import tutorials, videos, forum, auth, contact
+from app.routes import tutorials, videos, forum, auth, contact, visits
 
 settings = get_settings()
 
@@ -33,6 +33,7 @@ app.include_router(videos.router)
 app.include_router(forum.router)
 app.include_router(auth.router)
 app.include_router(contact.router)
+app.include_router(visits.router)
 
 @app.get("/api/health")
 async def health_check():

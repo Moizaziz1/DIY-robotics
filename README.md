@@ -3,10 +3,7 @@ title: Diy Smart Home
 emoji: 🚀
 colorFrom: indigo
 colorTo: gray
-sdk: gradio
-sdk_version: 6.22.0
-python_version: '3.12'
-app_file: app.py
+sdk: docker
 pinned: false
 ---
 

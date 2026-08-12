@@ -97,6 +97,17 @@ html.light .bg-dark-logo {
   background-color: #ffffff;
 }
 
+/* Logo container for light/dark mode */
+.logo-container {
+  background-color: #06060a;
+}
+html.light .logo-container {
+  background-color: #f8f9fa;
+}
+html.light .logo-container img {
+  filter: brightness(1.1) contrast(1.05);
+}
+
 html.light .bg-white\/\[0\.03\],
 html.light .bg-white\/\[0\.04\],
 html.light .bg-white\/\[0\.06\] {

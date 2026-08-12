@@ -16,7 +16,7 @@ const navItems = [
 ];
 
 function AdminShell({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, logout } = useAdminAuth();
+  const { isAuthenticated, user, logout } = useAdminAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 
@@ -64,6 +64,12 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/5">
+          {user && (
+            <div className="mb-3 px-3">
+              <p className="text-xs text-gray-500">Logged in as</p>
+              <p className="text-sm text-white font-medium">{user.display_name || user.username}</p>
+            </div>
+          )}
           <button
             onClick={logout}
             className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-red-400 hover:bg-red-400/10 transition-all w-full"

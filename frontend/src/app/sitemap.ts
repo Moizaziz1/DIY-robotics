@@ -4,7 +4,7 @@ import { videos } from '@/data/videos';
 import { blogPosts } from '@/data/blog';
 import { categories } from '@/data/tutorials';
 
-const baseUrl = 'https://diy-smarthome.dev';
+const baseUrl = 'https://diysmarthomerobotics.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [

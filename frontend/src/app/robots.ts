@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://diy-smarthome.dev/sitemap.xml',
+    sitemap: 'https://diysmarthomerobotics.com/sitemap.xml',
   };
 }

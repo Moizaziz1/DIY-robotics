@@ -3,8 +3,9 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CookieConsentProvider } from '@/components/CookieConsent';
+import VisitTracker from '@/components/VisitTracker';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://diy-smarthome.dev';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://diysmarthomerobotics.com';
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'DIY Smart Home Robotics';
 const adSensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID;
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
@@ -48,7 +49,7 @@ const jsonLd = {
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/logodiy.png`,
+      url: `${siteUrl}/logo.jpeg`,
     },
   },
   potentialAction: {
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-dark-900 text-gray-100 min-h-screen flex flex-col">
         <CookieConsentProvider>
+          <VisitTracker />
           <a href="#main-content" className="skip-link">
             Skip to main content
           </a>

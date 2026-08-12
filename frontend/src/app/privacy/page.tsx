@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Introduction</h2>
             <p className="text-gray-400 leading-relaxed">
-              DIY Smart Home Robotics (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) operates the website diy-smarthome.dev. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website and use our services, including our community forum, newsletter, and contact forms.
+              DIY Smart Home Robotics (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) operates the website diysmarthomerobotics.com. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website and use our services, including our community forum, newsletter, and contact forms.
             </p>
             <p className="text-gray-400 leading-relaxed mt-3">
               We are committed to protecting your privacy and being transparent about the data we collect. This policy applies to all visitors and users of our website.

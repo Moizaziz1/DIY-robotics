@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.core.database import Base
 
+
 class ForumThread(Base):
     __tablename__ = "forum_threads"
 
@@ -10,7 +11,8 @@ class ForumThread(Base):
     title = Column(String(255), nullable=False)
     content = Column(Text, nullable=False)
     author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    category_id = Column(Integer, ForeignKey("categories.id"))
+    category = Column(String(100), default="General")
+    tags = Column(String(500), default="")
     is_pinned = Column(Boolean, default=False)
     is_locked = Column(Boolean, default=False)
     upvotes = Column(Integer, default=0)
@@ -24,6 +26,7 @@ class ForumThread(Base):
     @property
     def reply_count(self):
         return len(self.replies) if self.replies else 0
+
 
 class ForumReply(Base):
     __tablename__ = "forum_replies"

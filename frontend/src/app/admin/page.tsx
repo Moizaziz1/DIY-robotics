@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useAdminAuth } from '@/lib/admin-auth';
-import { Lock, Eye, EyeOff, Cpu, AlertCircle } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, Cpu, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -16,11 +17,9 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError('');
 
-    await new Promise((r) => setTimeout(r, 500));
-
-    const success = login(password);
+    const success = await login(username, password);
     if (!success) {
-      setError('Invalid password');
+      setError('Invalid username or password');
       setLoading(false);
     }
   };
@@ -37,6 +36,21 @@ export default function AdminLoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-[#0c0c14] border border-white/5 rounded-2xl p-6">
+          <div className="mb-4">
+            <label className="block text-sm text-gray-400 mb-2">Username</label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => { setUsername(e.target.value); setError(''); }}
+                className="w-full pl-10 pr-4 py-3 bg-dark-900 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/50 text-sm"
+                placeholder="Enter username"
+                autoFocus
+              />
+            </div>
+          </div>
+
           <div className="mb-5">
             <label className="block text-sm text-gray-400 mb-2">Password</label>
             <div className="relative">
@@ -46,8 +60,7 @@ export default function AdminLoginPage() {
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setError(''); }}
                 className="w-full pl-10 pr-12 py-3 bg-dark-900 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-neon-cyan/50 focus:ring-1 focus:ring-neon-cyan/50 text-sm"
-                placeholder="Enter admin password"
-                autoFocus
+                placeholder="Enter password"
               />
               <button
                 type="button"
@@ -68,15 +81,11 @@ export default function AdminLoginPage() {
 
           <button
             type="submit"
-            disabled={loading || !password}
+            disabled={loading || !username || !password}
             className="w-full py-3 bg-neon-cyan text-dark-900 font-semibold rounded-xl hover:bg-neon-cyan/90 transition-colors disabled:opacity-50 text-sm"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
-
-          <p className="text-gray-600 text-xs text-center mt-4">
-            Default password: diyadmin2026
-          </p>
         </form>
       </div>
     </div>

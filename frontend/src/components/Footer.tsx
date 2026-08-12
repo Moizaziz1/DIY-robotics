@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Cpu } from 'lucide-react';
 
 const footerLinks = {
   'Tutorials': [
@@ -29,8 +28,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-green flex items-center justify-center group-hover:shadow-lg group-hover:shadow-neon-cyan/20 transition-shadow duration-300">
-                <Cpu className="w-5 h-5 text-dark-900" />
+              <div className="w-12 h-12 rounded-xl overflow-hidden logo-container group-hover:shadow-lg group-hover:shadow-neon-cyan/20 transition-shadow duration-300">
+                <img src="/logo.jpeg" alt="DIY Smart Home Robotics Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-lg font-bold font-display">
                 <span className="text-neon-cyan">DIY</span>

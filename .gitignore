@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+.env.local
+.DS_Store
+node_modules/
+.next/
+build/
+out/
+*.tsbuildinfo

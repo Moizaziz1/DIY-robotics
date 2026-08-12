@@ -26,7 +26,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Acceptance of Terms</h2>
             <p className="text-gray-400 leading-relaxed">
-              By accessing and using DIY Smart Home Robotics (diy-smarthome.dev), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.
+              By accessing and using DIY Smart Home Robotics (diysmarthomerobotics.com), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.
             </p>
           </section>
 

@@ -61,15 +61,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="shrink-0" aria-label="DIY SmartHome - Home">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan via-neon-green to-neon-cyan rounded-xl rotate-12 opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-green to-neon-cyan rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 text-dark-900" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
+            <div className="w-12 h-12 rounded-xl overflow-hidden logo-container">
+              <img src="/logo.jpeg" alt="DIY Smart Home Robotics Logo" className="w-full h-full object-contain" />
             </div>
           </Link>
 

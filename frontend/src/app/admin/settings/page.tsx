@@ -7,7 +7,7 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [settings, setSettings] = useState({
     siteName: 'DIY Smart Home Robotics',
-    siteUrl: 'https://diy-smarthome.dev',
+    siteUrl: 'https://diysmarthomerobotics.com',
     contactEmail: 'homerobotics515@gmail.com',
     adsensePubId: '',
     googleVerification: '',

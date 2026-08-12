@@ -615,7 +615,7 @@ function ForumContent() {
                 </button>
                 <p className="text-center text-sm text-gray-500">
                   {authModal === 'login' ? (
-                    <>Don't have an account? <button type="button" onClick={() => { setAuthModal('register'); setAuthError(''); }} className="text-neon-green hover:underline">Register</button></>
+                    <>Don&apos;t have an account? <button type="button" onClick={() => { setAuthModal('register'); setAuthError(''); }} className="text-neon-green hover:underline">Register</button></>
                   ) : (
                     <>Already have an account? <button type="button" onClick={() => { setAuthModal('login'); setAuthError(''); }} className="text-neon-green hover:underline">Login</button></>
                   )}

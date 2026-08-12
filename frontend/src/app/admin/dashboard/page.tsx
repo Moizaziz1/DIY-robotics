@@ -43,7 +43,7 @@ export default function DashboardPage() {
     fetchStats();
     const interval = setInterval(fetchStats, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [authHeaders]);
 
   const contentStats = [
     { name: 'Total Tutorials', value: tutorials.length, icon: <FileText className="w-5 h-5" />, color: 'text-neon-cyan', bg: 'bg-neon-cyan/10' },

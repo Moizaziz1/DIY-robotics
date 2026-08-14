@@ -28,7 +28,7 @@ async def list_threads(
         selectinload(ForumThread.replies)
     )
     if category and category != "All":
-        query = query.where(ForumThread.category_id == int(category)) if category.isdigit() else query
+        query = query.where(ForumThread.category == category)
     if search:
         query = query.where(ForumThread.title.ilike(f"%{search}%"))
     query = query.order_by(ForumThread.is_pinned.desc(), ForumThread.created_at.desc())

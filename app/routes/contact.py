@@ -42,7 +42,11 @@ async def submit_contact(form: ContactForm, db: AsyncSession = Depends(get_db)):
     db.add(submission)
     await db.commit()
 
-    await asyncio.to_thread(_send_email, form.name, form.email, form.subject, form.message)
+    if settings.SMTP_HOST and settings.SMTP_USER:
+        try:
+            await asyncio.to_thread(_send_email, form.name, form.email, form.subject, form.message)
+        except Exception:
+            pass
 
     return {"message": "Contact form submitted successfully"}
 

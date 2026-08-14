@@ -3,7 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from typing import Optional
 from app.core.database import get_db
+from app.core.auth import get_current_user
 from app.models.video import Video
+from app.models.user import User
 from app.schemas.video import VideoCreate, VideoResponse
 
 router = APIRouter(prefix="/api/videos", tags=["videos"])
@@ -34,7 +36,13 @@ async def get_video(slug: str, db: AsyncSession = Depends(get_db)):
     return video
 
 @router.post("", response_model=VideoResponse)
-async def create_video(video: VideoCreate, db: AsyncSession = Depends(get_db)):
+async def create_video(
+    video: VideoCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
     db_video = Video(**video.model_dump(), is_published=True)
     db.add(db_video)
     await db.commit()

@@ -25,6 +25,6 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 COPY ./app ./app
 
-EXPOSE 7860
+EXPOSE $PORT
 
-CMD ["python" , "-m" ,"uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "$PORT"]

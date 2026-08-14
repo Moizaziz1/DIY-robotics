@@ -4,12 +4,14 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     envVars:
+      - key: PORT
+        value: '10000'
       - key: DATABASE_URL
         sync: false
       - key: SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
-        value: '["https://your-frontend-domain.com"]'
+        value: '["*"]'
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT

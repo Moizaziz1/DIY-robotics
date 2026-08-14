@@ -11,3 +11,4 @@ httpx
 alembic
 python-dotenv
 pydantic[email]
+gradio

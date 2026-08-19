@@ -1,5 +1,5 @@
 import json
-from pydantic import field_validator
+from pydantic import model_validator
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 
@@ -14,12 +14,13 @@ class Settings(BaseSettings):
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
 
-    @field_validator("CORS_ORIGINS", mode="before")
+    @model_validator(mode="before")
     @classmethod
-    def parse_cors_origins(cls, v):
-        if isinstance(v, str):
-            return json.loads(v)
-        return v
+    def parse_cors_origins(cls, values):
+        cors = values.get("CORS_ORIGINS")
+        if isinstance(cors, str):
+            values["CORS_ORIGINS"] = json.loads(cors)
+        return values
 
     class Config:
         env_file = ".env"

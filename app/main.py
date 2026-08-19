@@ -8,6 +8,12 @@ from app.routes import tutorials, videos, forum, auth, contact, visits
 
 settings = get_settings()
 
+def parse_origins(raw: str) -> list[str]:
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        return [o.strip().strip('"') for o in raw.split(",")]
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
@@ -23,7 +29,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=json.loads(settings.CORS_ORIGINS),
+    allow_origins=parse_origins(settings.CORS_ORIGINS),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

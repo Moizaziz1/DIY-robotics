@@ -9,9 +9,9 @@ services:
       - key: DATABASE_URL
         sync: false
       - key: SECRET_KEY
-        generateValue: true
+        sync: false
       - key: CORS_ORIGINS
-        value: '["https://diysmarthomerobotics.com"]'
+        value: '["https://diysmarthomerobotics.com","https://moizaziz16-diy-smart-home.hf.space","http://localhost:3000"]'
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT

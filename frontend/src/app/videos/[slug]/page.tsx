@@ -85,7 +85,7 @@ export default function VideoPage({ params }: Props) {
               )}
             </div>
             <div>
-              {relatedTutorials.length > 0 && (
+              {videos.filter(v => v.category === video.category && v.id !== video.id).length > 0 && (
                 <div className="bg-dark-800 border border-white/5 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-white mb-4">Related Videos</h3>
                   <div className="space-y-4">

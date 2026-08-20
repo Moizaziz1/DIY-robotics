@@ -45,7 +45,12 @@ class AdminLoginRequest(BaseModel):
     username: str
     password: str
 
-@router.post("/admin/login", response_model=Token)
+class AdminLoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: dict
+
+@router.post("/admin/login", response_model=AdminLoginResponse)
 async def admin_login(form: AdminLoginRequest, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(User).where(User.username == form.username))
     db_user = result.scalar_one_or_none()
@@ -54,7 +59,16 @@ async def admin_login(form: AdminLoginRequest, db: AsyncSession = Depends(get_db
     if not db_user.is_admin:
         raise HTTPException(status_code=403, detail="Not authorized as admin")
     token = create_access_token({"sub": db_user.id})
-    return Token(access_token=token)
+    return AdminLoginResponse(
+        access_token=token,
+        user={
+            "id": db_user.id,
+            "username": db_user.username,
+            "email": db_user.email,
+            "display_name": db_user.display_name,
+            "is_admin": db_user.is_admin,
+        }
+    )
 
 @router.get("/admin/me", response_model=UserResponse)
 async def get_admin_me(current_user: User = Depends(get_current_user)):

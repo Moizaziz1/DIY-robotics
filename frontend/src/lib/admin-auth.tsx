@@ -29,6 +29,28 @@ const AdminAuthContext = createContext<AdminAuthContextType>({
   authHeaders: () => ({}),
 });
 
+function parseJwt(token: string): Record<string, unknown> | null {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch {
+    return null;
+  }
+}
+
+function isTokenExpired(token: string): boolean {
+  const payload = parseJwt(token);
+  if (!payload || typeof payload.exp !== 'number') return true;
+  return payload.exp * 1000 < Date.now();
+}
+
 export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<AdminUser | null>(null);
@@ -38,34 +60,21 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('admin-token');
-    if (storedToken) {
+    const storedUser = localStorage.getItem('admin-user');
+    if (storedToken && !isTokenExpired(storedToken)) {
       setToken(storedToken);
-      verifyToken(storedToken);
-    } else {
-      setChecked(true);
-    }
-  }, []);
-
-  const verifyToken = async (accessToken: string) => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/admin/me`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data);
-        setIsAuthenticated(true);
-      } else {
-        localStorage.removeItem('admin-token');
-        setToken(null);
+      if (storedUser) {
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch { /* ignore */ }
       }
-    } catch {
+      setIsAuthenticated(true);
+    } else {
       localStorage.removeItem('admin-token');
-      setToken(null);
-    } finally {
-      setChecked(true);
+      localStorage.removeItem('admin-user');
     }
-  };
+    setChecked(true);
+  }, []);
 
   const login = async (username: string, password: string): Promise<boolean> => {
     try {
@@ -76,9 +85,12 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       });
       if (!res.ok) return false;
       const data = await res.json();
+      const adminUser: AdminUser = data.user;
       localStorage.setItem('admin-token', data.access_token);
+      localStorage.setItem('admin-user', JSON.stringify(adminUser));
       setToken(data.access_token);
-      await verifyToken(data.access_token);
+      setUser(adminUser);
+      setIsAuthenticated(true);
       router.push('/admin/dashboard');
       return true;
     } catch {
@@ -88,6 +100,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     localStorage.removeItem('admin-token');
+    localStorage.removeItem('admin-user');
     setToken(null);
     setUser(null);
     setIsAuthenticated(false);

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import SectionHeader from '@/components/SectionHeader';
-import AdSlot from '@/components/AdSlot';
 import { Mail, Send, Loader2, Check } from 'lucide-react';
 
 export default function ContactPage() {
@@ -124,7 +123,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-            <AdSlot format="square" />
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blog';
-import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight, ArrowLeft, Clock, User } from 'lucide-react';
@@ -103,10 +102,6 @@ export default function BlogPostPage({ params }: Props) {
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">{post.excerpt}</p>
                 <p className="text-gray-400 leading-relaxed">{post.content}</p>
 
-                <div className="my-8">
-                  <AdSlot format="horizontal" label="Advertisement" />
-                </div>
-
                 <div className="mt-8 p-6 bg-dark-800 border border-white/5 rounded-2xl">
                   <h3 className="text-lg font-semibold text-white mb-2">About the Author</h3>
                   <p className="text-gray-400 text-sm">{post.authorBio}</p>
@@ -123,7 +118,6 @@ export default function BlogPostPage({ params }: Props) {
             </div>
 
             <div className="space-y-6">
-              <AdSlot format="vertical" />
               {relatedPosts.length > 0 && (
                 <div className="bg-dark-800 border border-white/5 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-white mb-4">Related Articles</h3>

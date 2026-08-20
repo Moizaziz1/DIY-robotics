@@ -2,12 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CookieConsentProvider } from '@/components/CookieConsent';
 import VisitTracker from '@/components/VisitTracker';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://diysmarthomerobotics.com';
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'DIY Smart Home Robotics';
-const adSensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID;
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -70,16 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {googleVerification && (
           <meta name="google-site-verification" content={googleVerification} />
         )}
-        {adSensePubId && (
-          <>
-            <meta name="google-adsense-account" content={adSensePubId} />
-            <script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSensePubId}`}
-              crossOrigin="anonymous"
-            />
-          </>
-        )}
         {googleAnalyticsId && (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
@@ -101,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-dark-900 text-gray-100 min-h-screen flex flex-col">
-        <CookieConsentProvider>
           <VisitTracker />
           <a href="#main-content" className="skip-link">
             Skip to main content
@@ -109,7 +96,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <main id="main-content" className="flex-1 pt-16">{children}</main>
           <Footer />
-        </CookieConsentProvider>
       </body>
     </html>
   );

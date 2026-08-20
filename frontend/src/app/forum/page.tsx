@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '@/components/SectionHeader';
-import AdSlot from '@/components/AdSlot';
 import { ForumAuthProvider, useForumAuth } from '@/lib/forum-auth';
 import {
   MessageSquare, Users, TrendingUp, Clock, Search, Plus,
@@ -537,9 +536,6 @@ function ForumContent() {
           )}
         </AnimatePresence>
 
-        <div className="mt-12">
-          <AdSlot format="horizontal" />
-        </div>
       </div>
 
       {/* Auth Modal */}

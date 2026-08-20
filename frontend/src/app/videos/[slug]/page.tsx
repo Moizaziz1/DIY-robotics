@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { videos } from '@/data/videos';
-import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
 import { ChevronRight, ArrowLeft, Play } from 'lucide-react';
 import { extractYouTubeId } from '@/lib/utils';
@@ -78,10 +77,6 @@ export default function VideoPage({ params }: Props) {
               <h1 className="text-3xl font-bold text-white mt-2">{video.title}</h1>
               <p className="text-gray-400 mt-4 leading-relaxed">{video.description}</p>
 
-              <div className="my-6">
-                <AdSlot format="horizontal" label="Advertisement" />
-              </div>
-
               {video.transcript && (
                 <div className="mt-8 bg-dark-800 border border-white/5 rounded-2xl p-6">
                   <h2 className="text-xl font-bold text-white mb-4">Transcript</h2>
@@ -90,7 +85,21 @@ export default function VideoPage({ params }: Props) {
               )}
             </div>
             <div>
-              <AdSlot format="vertical" />
+              {relatedTutorials.length > 0 && (
+                <div className="bg-dark-800 border border-white/5 rounded-2xl p-6">
+                  <h3 className="text-lg font-bold text-white mb-4">Related Videos</h3>
+                  <div className="space-y-4">
+                    {videos.filter(v => v.category === video.category && v.id !== video.id).slice(0, 3).map((v) => (
+                      <Link key={v.id} href={`/videos/${v.slug}`} className="block group">
+                        <h4 className="text-sm font-medium text-gray-300 group-hover:text-neon-purple transition-colors">
+                          {v.title}
+                        </h4>
+                        <span className="text-xs text-gray-500">{v.duration}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

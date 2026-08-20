@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { tutorials, categories } from '@/data/tutorials';
 import TutorialCard from '@/components/TutorialCard';
 import SectionHeader from '@/components/SectionHeader';
-import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -39,19 +38,8 @@ export default function TutorialsPage() {
         {/* Tutorials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tutorials.map((tutorial, i) => (
-            <div key={tutorial.id}>
-              <TutorialCard {...tutorial} index={i} />
-              {i === 2 && (
-                <div className="mt-6">
-                  <AdSlot format="horizontal" />
-                </div>
-              )}
-            </div>
+            <TutorialCard key={tutorial.id} {...tutorial} index={i} />
           ))}
-        </div>
-
-        <div className="mt-12">
-          <AdSlot format="horizontal" />
         </div>
       </div>
     </div>

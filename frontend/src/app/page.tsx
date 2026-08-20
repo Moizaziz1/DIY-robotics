@@ -9,7 +9,6 @@ import BlogCard from '@/components/BlogCard';
 import SectionHeader from '@/components/SectionHeader';
 import NewsletterForm from '@/components/NewsletterForm';
 import ScrollReveal from '@/components/ScrollReveal';
-import AdSlot from '@/components/AdSlot';
 import { tutorials } from '@/data/tutorials';
 import { videos } from '@/data/videos';
 import { blogPosts } from '@/data/blog';
@@ -117,13 +116,6 @@ export default function HomePage() {
               View All Tutorials <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Ad Slot */}
-      <section className="py-10 px-4">
-        <div className="max-w-7xl mx-auto">
-          <AdSlot format="horizontal" />
         </div>
       </section>
 

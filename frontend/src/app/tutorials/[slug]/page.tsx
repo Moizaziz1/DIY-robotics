@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { tutorials } from '@/data/tutorials';
-import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, DollarSign, ArrowLeft, ChevronRight, User } from 'lucide-react';
@@ -157,11 +156,6 @@ export default function TutorialPage({ params }: Props) {
                         </pre>
                       )}
                     </div>
-                    {i === Math.floor(tutorial.steps.length / 2) && (
-                      <div className="my-6">
-                        <AdSlot format="horizontal" label="Advertisement" />
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
@@ -169,8 +163,6 @@ export default function TutorialPage({ params }: Props) {
 
             {/* Sidebar */}
             <div className="space-y-6">
-              <AdSlot format="vertical" label="Advertisement" />
-
               {relatedTutorials.length > 0 && (
                 <div className="bg-dark-800 border border-white/5 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-white mb-4">Related Tutorials</h3>

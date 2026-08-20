@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { videos } from '@/data/videos';
 import VideoCard from '@/components/VideoCard';
 import SectionHeader from '@/components/SectionHeader';
-import AdSlot from '@/components/AdSlot';
 
 export const metadata: Metadata = {
   title: 'Video Tutorials',
@@ -20,18 +19,8 @@ export default function VideosPage() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, i) => (
-            <div key={video.id}>
-              <VideoCard {...video} index={i} />
-              {i === 2 && (
-                <div className="mt-6">
-                  <AdSlot format="horizontal" />
-                </div>
-              )}
-            </div>
+            <VideoCard key={video.id} {...video} index={i} />
           ))}
-        </div>
-        <div className="mt-12">
-          <AdSlot format="horizontal" />
         </div>
       </div>
     </div>

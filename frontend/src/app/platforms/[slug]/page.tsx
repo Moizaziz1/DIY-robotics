@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { tutorials, categories } from '@/data/tutorials';
 import TutorialCard from '@/components/TutorialCard';
-import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
 import { ChevronRight, Cpu, CpuIcon, Wifi } from 'lucide-react';
 
@@ -71,9 +70,6 @@ export default function PlatformPage({ params }: Props) {
             <p className="text-gray-400">We are working on {category.name} tutorials. Check back soon!</p>
           </div>
         )}
-        <div className="mt-12">
-          <AdSlot format="horizontal" />
-        </div>
       </div>
     </div>
   );

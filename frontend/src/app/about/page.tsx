@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import SectionHeader from '@/components/SectionHeader';
-import AdSlot from '@/components/AdSlot';
 import { Cpu, Code, Users, Award, Shield, Heart } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -85,7 +84,6 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <AdSlot format="horizontal" />
       </div>
     </div>
   );

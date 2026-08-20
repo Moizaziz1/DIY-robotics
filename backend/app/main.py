@@ -15,24 +15,27 @@ def parse_origins(raw: str) -> list[str]:
         return [o.strip().strip('"') for o in raw.split(",")]
 
 async def seed_admin():
-    from sqlalchemy import select
-    from app.models.user import User
-    from app.core.auth import get_password_hash
+    try:
+        from sqlalchemy import select
+        from app.models.user import User
+        from app.core.auth import get_password_hash
 
-    async with async_session() as db:
-        result = await db.execute(select(User).where(User.username == "admin"))
-        if result.scalar_one_or_none():
-            return
-        admin = User(
-            username="admin",
-            email="homerobotics515@gmail.com",
-            hashed_password=get_password_hash("admin123"),
-            display_name="Admin",
-            is_admin=True,
-            is_active=True,
-        )
-        db.add(admin)
-        await db.commit()
+        async with async_session() as db:
+            result = await db.execute(select(User).where(User.username == "admin"))
+            if result.scalar_one_or_none():
+                return
+            admin = User(
+                username="admin",
+                email="homerobotics515@gmail.com",
+                hashed_password=get_password_hash("admin123"),
+                display_name="Admin",
+                is_admin=True,
+                is_active=True,
+            )
+            db.add(admin)
+            await db.commit()
+    except Exception as e:
+        print(f"seed_admin error: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
